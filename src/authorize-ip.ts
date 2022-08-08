@@ -15,8 +15,10 @@ import { exec } from '@actions/exec';
     core.info(`ipv4: ${ipv4.result.ip}`);
     core.saveState('ipv4', ipv4.result.ip);
 
+    const ipv4Value = ipv4.result.ip;
+
     // Whitelist in aws
-    await exec(`aws ec2 authorize-security-group-ingress --group-id ${ sgId } --protocol tcp --port 22 --cidr ${ ipv4.result.ip }/32`);
+    await exec(`aws ec2 authorize-security-group-ingress --group-id ${{ sgId }} --protocol tcp --port 22 --cidr ${{ ipv4Value }}/32`);
 })().catch(error => {
     core.setFailed(error);
 });
