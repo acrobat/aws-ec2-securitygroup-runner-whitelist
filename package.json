@@ -1,0 +1,22 @@
+{
+  "name": "aws-ec2-securitygroup-runner-whitelist",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:acrobat/aws-ec2-securitygroup-runner-whitelist.git",
+  "author": "Jeroen Thora <jeroenthora@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "compile": "ncc build -o dist/authorize-ip src/authorize-ip.ts --minify && ncc build -o dist/revoke-ip src/revoke-ip.ts --minify"
+  },
+  "dependencies": {
+    "@actions/core": "^1.9.0",
+    "@actions/exec": "^1.1.0",
+    "@actions/github": "^5.0.3",
+    "@actions/http-client": "^2.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.6.4",
+    "@vercel/ncc": "^0.34.0",
+    "typescript": "^4.7.4"
+  }
+}

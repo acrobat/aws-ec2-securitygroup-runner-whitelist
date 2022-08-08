@@ -1,0 +1,10 @@
+name: 'AWS ec2 securitygroup runner ip whitelist'
+description: 'Whitelist the Github action runner ip on your ec2 securitygroup'
+inputs:
+    securitygroup-id:
+        description: 'Securitygroup id'
+        required: true
+runs:
+    using: 'node16'
+    main: 'dist/authorize-ip/index.js'
+    post: 'dist/revoke-ip/index.js'
