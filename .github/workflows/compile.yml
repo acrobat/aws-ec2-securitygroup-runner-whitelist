@@ -22,8 +22,8 @@ jobs:
 
             -   name: Compile with ncc
                 run: |
-                    ncc build -o dist/authorize-ip src/authorize-ip.ts --minify
-                    ncc build -o dist/revoke-ip src/revoke-ip.ts --minify
+                    npx @vercel/ncc build -o dist/authorize-ip src/authorize-ip.ts --minify
+                    npx @vercel/ncc build -o dist/revoke-ip src/revoke-ip.ts --minify
 
             -   name: Commit & Push changes
                 uses: actions-js/push@v1.3
