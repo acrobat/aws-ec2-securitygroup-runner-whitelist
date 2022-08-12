@@ -1,0 +1,35 @@
+on:
+    push:
+        branches:
+            - main
+        paths:
+            - src/**
+
+jobs:
+    compile:
+        name: Compile typescript code
+        runs-on: ubuntu-latest
+        steps:
+            -   uses: actions/checkout@v2
+                with:
+                    persist-credentials: false
+                    fetch-depth: 0
+
+            -   uses: actions/setup-node@v2
+
+            -   name: Install dependencies
+                run: npm install
+
+            -   name: Compile with ncc
+                run: |
+                    ncc build -o dist/authorize-ip src/authorize-ip.ts --minify
+                    ncc build -o dist/revoke-ip src/revoke-ip.ts --minify
+
+            -   name: Commit & Push changes
+                uses: actions-js/push@v1.3
+                with:
+                    github_token: ${{ secrets.GITHUB_TOKEN }}
+                    branch: main
+                    message: 'Auto-compile dist code'
+                    author_name: 'Jeroen Thora'
+                    author_email: '1374857+acrobat@users.noreply.github.com'
