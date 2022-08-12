@@ -9,7 +9,7 @@ import { exec } from '@actions/exec';
     // Get runner ip
     const maxRetries = 10;
 
-    const http = new HttpClient('haythem/public-ip', undefined, { allowRetries: true, maxRetries: maxRetries });
+    const http = new HttpClient('github action "acrobat/aws-ec2-allow-runner-ip"', undefined, { allowRetries: true, maxRetries: maxRetries });
     const ipv4 = await http.getJson<IPResponse>('https://api.ipify.org?format=json');
 
     core.info(`ipv4: ${ipv4.result.ip}`);
